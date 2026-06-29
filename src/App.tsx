@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import RootLayout from './components/layout/RootLayout';
 import Preloader from './components/sections/Preloader';
 import HomePage from './pages/HomePage';
@@ -29,7 +29,7 @@ export default function App() {
     <ThemeProvider>
       <I18nProvider>
         {loading && <Preloader />}
-        <BrowserRouter>
+        <HashRouter>
           <Routes>
             <Route element={<RootLayout />}>
               <Route path="/" element={<HomePage />} />
@@ -46,7 +46,7 @@ export default function App() {
           </Routes>
           <Chatbot />
           <WhatsAppButton />
-        </BrowserRouter>
+        </HashRouter>
       </I18nProvider>
     </ThemeProvider>
   );

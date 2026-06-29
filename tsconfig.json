@@ -15,5 +15,6 @@
     "paths": { "@/*": ["./src/*"] },
     "allowImportingTsExtensions": true,
     "noEmit": true
-  }
+  },
+  "exclude": ["readscript.js"]
 }
