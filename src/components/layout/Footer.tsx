@@ -3,6 +3,7 @@
 import { Link } from 'react-router-dom';
 import type { ReactNode } from 'react';
 import { motion } from 'motion/react';
+import { useI18n } from '@/contexts/i18nContext';
 
 /* ------------------------------------------------------------------ */
 /*  Icon components (inline SVGs to avoid external deps)              */
@@ -126,6 +127,7 @@ const CONNECT_ICON_MAP: Record<string, (props: { size?: number; color?: string }
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { t, lang } = useI18n();
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -154,13 +156,12 @@ export default function Footer() {
               NEXU
               <span style={{ color: 'var(--color-accent)' }}>X</span>
             </Link>
-            <p
-              className="mt-3 max-w-sm text-sm leading-relaxed"
-              style={{ color: 'var(--color-text-secondary)' }}
-            >
-              Full-stack developer & UI/UX enthusiast crafting elegant
-              digital experiences with modern web technologies.
-            </p>
+             <p
+               className="mt-3 max-w-sm text-sm leading-relaxed"
+               style={{ color: 'var(--color-text-secondary)' }}
+             >
+               {t('footer.description')}
+             </p>
           </div>
 
           {/* Social Links */}
@@ -200,8 +201,8 @@ export default function Footer() {
           style={{ background: 'var(--color-border)' }}
         />
 
-        {/* Middle Section: 3-Column Links */}
-        <div className="grid grid-cols-1 gap-8 py-10 sm:grid-cols-2 lg:grid-cols-3">
+         {/* Middle Section: 3-Column Links */}
+         <div className="grid grid-cols-1 gap-8 py-10 sm:grid-cols-2 lg:grid-cols-3">
           {SECTIONS.map((section) => (
             <div key={section.title}>
               <h4
@@ -212,7 +213,7 @@ export default function Footer() {
                   letterSpacing: '0.13em',
                 }}
               >
-                {section.title}
+                {t(`footer.${section.title.toLowerCase()}`)}
               </h4>
               <ul className="flex flex-col gap-0.5">
                 {section.links.map((link) => (
@@ -262,7 +263,7 @@ export default function Footer() {
             className="text-xs"
             style={{ color: 'var(--color-text-muted)' }}
           >
-            &copy; {currentYear} Ehtijad Ali. All rights reserved.
+            &copy; {currentYear} {t('footer.brand')}. {t('footer.rights')}
           </p>
           
           <div className="flex items-center gap-4">

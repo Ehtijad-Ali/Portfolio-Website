@@ -14,8 +14,18 @@ import NotFoundPage from './pages/NotFoundPage';
 import Chatbot from './components/ui/Chatbot';
 import WhatsAppButton from './components/ui/WhatsAppButton';
 import { ThemeProvider } from './contexts/ThemeContext';
-import { I18nProvider } from './contexts/i18nContext';
+import { I18nProvider, useI18n } from './contexts/i18nContext';
 import { useState, useEffect } from 'react';
+
+function RTLManager({ children }: { children: React.ReactNode }) {
+  const { lang } = useI18n();
+  
+  useEffect(() => {
+    document.documentElement.setAttribute('dir', lang === 'ur' ? 'rtl' : 'ltr');
+  }, [lang]);
+
+  return <>{children}</>;
+}
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -28,25 +38,27 @@ export default function App() {
   return (
     <ThemeProvider>
       <I18nProvider>
-        {loading && <Preloader />}
-        <HashRouter>
-          <Routes>
-            <Route element={<RootLayout />}>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/skills" element={<SkillsPage />} />
-              <Route path="/projects" element={<ProjectsPage />} />
-              <Route path="/experience" element={<ExperiencePage />} />
-              <Route path="/feedback" element={<FeedbackPage />} />
-              <Route path="/blogs" element={<BlogsPage />} />
-              <Route path="/certifications" element={<CertificationsPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="*" element={<NotFoundPage />} />
-            </Route>
-          </Routes>
-          <Chatbot />
-          <WhatsAppButton />
-        </HashRouter>
+        <RTLManager>
+          {loading && <Preloader />}
+          <HashRouter>
+            <Routes>
+              <Route element={<RootLayout />}>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/skills" element={<SkillsPage />} />
+                <Route path="/projects" element={<ProjectsPage />} />
+                <Route path="/experience" element={<ExperiencePage />} />
+                <Route path="/feedback" element={<FeedbackPage />} />
+                <Route path="/blogs" element={<BlogsPage />} />
+                <Route path="/certifications" element={<CertificationsPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="*" element={<NotFoundPage />} />
+              </Route>
+            </Routes>
+            <Chatbot />
+            <WhatsAppButton />
+          </HashRouter>
+        </RTLManager>
       </I18nProvider>
     </ThemeProvider>
   );

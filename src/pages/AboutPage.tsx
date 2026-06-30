@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CTABanner from '@/components/sections/CTABanner';
+import { useI18n } from '@/contexts/i18nContext';
 
 /* ═══════════════════════════════════════════════════════════
    ALL SVG ICONS
@@ -272,6 +273,7 @@ function FloatIcon({ children, style }: { children: React.ReactNode; style?: Rea
 ═══════════════════════════════════════════════════════════ */
 export default function AboutPage() {
   const [mounted, setMounted] = useState(false);
+  const { t, lang } = useI18n();
   useEffect(() => { const t = setTimeout(() => setMounted(true), 60); return () => clearTimeout(t); }, []);
 
   const photoUrl = 'https://i.ibb.co/Rksnjdyh/Whats-App-Image-2026-06-26-at-12-05-20-AM.jpg';
@@ -327,7 +329,7 @@ export default function AboutPage() {
                   textTransform: 'uppercase',
                 }}
               >
-                About Me
+                {t('about.badge')}
               </p>
               
               <h1 
@@ -339,8 +341,7 @@ export default function AboutPage() {
                   color: 'var(--color-text-primary)',
                 }}
               >
-                Building Intelligent Solutions<br />
-                That Drive <span className="gradient-text">Real Impact</span>
+                {t('about.heading')}
               </h1>
               
               <div 
@@ -361,17 +362,15 @@ export default function AboutPage() {
                   lineHeight: 1.78,
                 }}
               >
-                A passionate AI Engineer & Data Scientist from Gilgit, Pakistan —<br />
-                driven by curiosity, shaped by data, and focused on building<br />
-                AI solutions that matter.
+                {t('about.description')}
               </p>
               
               {/* Stats row */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <StatCard icon={<CalendarIcon size={22} />} value="3+" label1="Years Experience" label2="AI/ML Development" />
-                <StatCard icon={<StarIcon size={22} />} value="30+" label1="Certifications" label2="Earned" />
-                <StatCard icon={<LayersIcon size={22} />} value="15+" label1="AI/ML Projects" label2="Completed" />
-                <StatCard icon={<UsersIcon size={22} />} value="20+" label1="Happy Clients" label2="Worldwide" />
+                <StatCard icon={<CalendarIcon size={22} />} value="3+" label1={t('about.stat1')} label2="AI/ML Development" />
+                <StatCard icon={<StarIcon size={22} />} value="30+" label1={t('about.stat2')} label2="Earned" />
+                <StatCard icon={<LayersIcon size={22} />} value="15+" label1={t('about.stat3')} label2="Completed" />
+                <StatCard icon={<UsersIcon size={22} />} value="20+" label1={t('about.stat4')} label2="Worldwide" />
               </div>
             </div>
 
@@ -454,7 +453,7 @@ export default function AboutPage() {
               fontFamily: 'var(--font-mono)',
             }}
           >
-            Principles
+            {t('about.principles')}
           </p>
           <h2 
             className="font-display font-bold mb-3"
@@ -465,7 +464,7 @@ export default function AboutPage() {
               color: 'var(--color-text-primary)',
             }}
           >
-            My <span style={{ color: 'var(--color-accent)' }}>Values</span>
+            {t('about.values')}
           </h2>
           <p 
             className="max-w-2xl mb-10"
@@ -475,7 +474,7 @@ export default function AboutPage() {
               lineHeight: 1.7,
             }}
           >
-            The core principles that guide my work and ensure I deliver meaningful and lasting impact.
+            {t('about.valuesDesc')}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <ValueCard
@@ -516,7 +515,7 @@ export default function AboutPage() {
               fontFamily: 'var(--font-mono)',
             }}
           >
-            Journey
+            {t('about.journey')}
           </p>
           <h2 
             className="font-display font-bold mb-8"
@@ -527,7 +526,7 @@ export default function AboutPage() {
               color: 'var(--color-text-primary)',
             }}
           >
-            My <span style={{ color: 'var(--color-accent)' }}>Journey</span>
+            {t('about.journeyTitle')}
           </h2>
 
           {/* Timeline line + dots */}
@@ -578,7 +577,7 @@ export default function AboutPage() {
               fontFamily: 'var(--font-mono)',
             }}
           >
-            Services
+            {t('about.services')}
           </p>
           <h2 
             className="font-display font-bold mb-3"
@@ -589,7 +588,7 @@ export default function AboutPage() {
               color: 'var(--color-text-primary)',
             }}
           >
-            What I <span style={{ color: 'var(--color-text-primary)' }}>Do</span>
+            {t('about.whatIDo')}
           </h2>
           <p 
             className="max-w-2xl mb-10"
@@ -599,7 +598,7 @@ export default function AboutPage() {
               lineHeight: 1.7,
             }}
           >
-            End-to-end AI solutions tailored to solve real-world problems.
+            {t('about.servicesDesc')}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <ServiceCard

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
+import { useI18n } from '@/contexts/i18nContext';
 
 // ─── SVG Icons ─────────────────────────────────────────────────────────────────
 
@@ -296,6 +297,7 @@ function TechLogo({ src, name }: { src: string; name: string }) {
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
+  const { t, lang } = useI18n();
   useEffect(() => {
     const t = setTimeout(() => setMounted(true), 80);
     return () => clearTimeout(t);
@@ -341,29 +343,29 @@ export default function Hero() {
             style={fadeIn(0)}
           >
             {/* Availability */}
-            <div
-              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full mb-6 self-start"
-              style={{
-                background: 'var(--color-surface)',
-                border: '1px solid var(--color-border)',
-                fontSize: 13,
-                color: 'var(--color-text-secondary)',
-              }}
-            >
-              <span
-                className="relative flex w-2 h-2"
+              <div
+                className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full mb-6 self-start"
+                style={{
+                  background: 'var(--color-surface)',
+                  border: '1px solid var(--color-border)',
+                  fontSize: 13,
+                  color: 'var(--color-text-secondary)',
+                }}
               >
                 <span
-                  className="absolute inline-flex h-full w-full rounded-full opacity-75"
-                  style={{ backgroundColor: 'var(--color-success)', animation: 'ping 1.5s cubic-bezier(0,0,0.2,1) infinite' }}
-                />
-                <span
-                  className="relative inline-flex rounded-full h-2 w-2"
-                  style={{ backgroundColor: 'var(--color-success)' }}
-                />
-              </span>
-              Available for Freelance &amp; Full-time Opportunities
-            </div>
+                  className="relative flex w-2 h-2"
+                >
+                  <span
+                    className="absolute inline-flex h-full w-full rounded-full opacity-75"
+                    style={{ backgroundColor: 'var(--color-success)', animation: 'ping 1.5s cubic-bezier(0,0,0.2,1) infinite' }}
+                  />
+                  <span
+                    className="relative inline-flex rounded-full h-2 w-2"
+                    style={{ backgroundColor: 'var(--color-success)' }}
+                  />
+                </span>
+                {t('hero.available')}
+              </div>
 
                 {/* Headline */}
                 <div className="flex items-start gap-3 mb-3">
@@ -389,9 +391,9 @@ export default function Hero() {
                     color: 'var(--color-text-primary)',
                   }}
                 >
-                  <span style={{ display: 'block' }}>AI Engineer,</span>
-                  <span style={{ display: 'block' }}>Data Scientist</span>
-                  <span className="gradient-text" style={{ display: 'block' }}>And Web Developer</span>
+                  <span style={{ display: 'block' }}>{t('hero.headline1')}</span>
+                  <span style={{ display: 'block' }}>{t('hero.headline2')}</span>
+                  <span className="gradient-text" style={{ display: 'block' }}>{t('hero.headline3')}</span>
                 </h1>
 
             {/* Description */}
@@ -403,16 +405,15 @@ export default function Hero() {
                 lineHeight: 1.78,
               }}
             >
-              I build intelligent AI solutions and data-driven applications
-              that solve real-world problems and create impact.
+              {t('hero.description')}
             </p>
 
             {/* Skill tags */}
             <div className="flex flex-wrap gap-2.5 mb-7">
-              <SkillTag icon={<EyeIcon size={17} color="var(--color-accent)" />} label="Machine Learning" />
-              <SkillTag icon={<EyeIcon size={17} color="var(--color-accent)" />} label="Computer Vision" />
-              <SkillTag icon={<ChatIcon size={17} color="var(--color-accent)" />} label="NLP" />
-              <SkillTag icon={<BarChartIcon size={17} color="var(--color-accent)" />} label="Data Analytics" />
+              <SkillTag icon={<EyeIcon size={17} color="var(--color-accent)" />} label={t('hero.skill1')} />
+              <SkillTag icon={<EyeIcon size={17} color="var(--color-accent)" />} label={t('hero.skill2')} />
+              <SkillTag icon={<ChatIcon size={17} color="var(--color-accent)" />} label={t('hero.skill3')} />
+              <SkillTag icon={<BarChartIcon size={17} color="var(--color-accent)" />} label={t('hero.skill4')} />
             </div>
 
             {/* CTA + Socials */}
@@ -427,7 +428,7 @@ export default function Hero() {
                   boxShadow: 'var(--color-shadow-md)',
                 }}
               >
-                Hire Me
+                {t('hero.cta')}
                 <span className="transition-transform duration-200 group-hover:translate-x-0.5">&rarr;</span>
               </Link>
               <Link
@@ -440,7 +441,7 @@ export default function Hero() {
                   fontSize: 15,
                 }}
               >
-                View Projects <span>&rarr;</span>
+                {t('hero.cta2')} <span>&rarr;</span>
               </Link>
               {[
                 { icon: <GitHubIcon />, href: 'https://github.com/Ehtijad-Ali' },
@@ -567,7 +568,7 @@ export default function Hero() {
           className="text-[10px] uppercase tracking-[0.25em]"
           style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-mono)' }}
         >
-          Scroll
+          {t('hero.scroll')}
         </span>
         <motion.div
           className="w-5 h-8 rounded-full flex justify-center pt-1.5"

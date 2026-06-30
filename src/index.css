@@ -141,6 +141,19 @@
 }
 
 /* ============================================
+   RTL SUPPORT FOR URDU
+   ============================================ */
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+[dir="rtl"] .section-container {
+  padding-left: clamp(1rem, 5vw, 4rem);
+  padding-right: clamp(1rem, 5vw, 4rem);
+}
+
+/* ============================================
    BASE STYLES
    ============================================ */
 * {

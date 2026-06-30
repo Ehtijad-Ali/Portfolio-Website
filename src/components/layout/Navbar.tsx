@@ -101,6 +101,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const { lang, toggleLang } = useI18n();
+  const { t } = useI18n();
   const location = useLocation();
 
   const isActive = useCallback(
@@ -164,31 +165,31 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden items-center gap-1 lg:flex">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.key}
-                to={link.href}
-                className="relative rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200"
-                style={{
-                  color: isActive(link.href)
-                    ? 'var(--color-accent)'
-                    : 'var(--color-text-secondary)',
-                  backgroundColor: isActive(link.href)
-                    ? 'var(--color-accent-light)'
-                    : 'transparent',
-                }}
-              >
-                {link.key.split('.')[1]}
-                {isActive(link.href) && (
-                  <motion.div
-                    layoutId="navbar-active"
-                    className="absolute bottom-0 left-1/2 h-0.5 w-4 -translate-x-1/2 rounded-full"
-                    style={{ backgroundColor: 'var(--color-accent)' }}
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                  />
-                )}
-              </Link>
-            ))}
+              {NAV_LINKS.map((link) => (
+                <Link
+                  key={link.key}
+                  to={link.href}
+                  className="relative rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200"
+                  style={{
+                    color: isActive(link.href)
+                      ? 'var(--color-accent)'
+                      : 'var(--color-text-secondary)',
+                    backgroundColor: isActive(link.href)
+                      ? 'var(--color-accent-light)'
+                      : 'transparent',
+                  }}
+                >
+                  {t(link.key)}
+                  {isActive(link.href) && (
+                    <motion.div
+                      layoutId="navbar-active"
+                      className="absolute bottom-0 left-1/2 h-0.5 w-4 -translate-x-1/2 rounded-full"
+                      style={{ backgroundColor: 'var(--color-accent)' }}
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </Link>
+              ))}
           </div>
 
           {/* Right Actions */}
@@ -315,7 +316,7 @@ export default function Navbar() {
                     <Link
                       to={link.href}
                       onClick={closeMobile}
-                      className="flex items-center rounded-lg px-4 py-3 text-sm font-medium capitalize transition-colors duration-200"
+                      className="flex items-center rounded-lg px-4 py-3 text-sm font-medium transition-colors duration-200"
                       style={{
                         color: isActive(link.href)
                           ? 'var(--color-accent)'
@@ -333,7 +334,7 @@ export default function Navbar() {
                             : 'var(--color-text-muted)',
                         }}
                       />
-                      {link.key.split('.')[1]}
+                      {t(link.key)}
                     </Link>
                   </motion.div>
                 ))}
